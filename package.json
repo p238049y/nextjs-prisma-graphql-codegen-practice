@@ -12,7 +12,8 @@
     "format": "run-s format:prettier format:eslint",
     "format:eslint": "yarn lint:eslint --fix",
     "format:prettier": "yarn lint:prettier --write",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "codegen": "graphql-codegen"
   },
   "dependencies": {
     "@graphql-tools/graphql-file-loader": "7.5.14",
