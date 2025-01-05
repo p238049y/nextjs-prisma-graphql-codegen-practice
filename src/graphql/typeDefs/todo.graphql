@@ -1,0 +1,57 @@
+type Todo {
+  id: ID!
+  userId: String!
+  title: String!
+  completed: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+}
+
+# 取得するクエリ(Read)
+type Query {
+  todos: [Todo!]!
+}
+
+# 値の変更に関する処理(Create, Update, Delete)
+# interfaceのようなイメージで、中身は下で定義？
+type Mutation {
+  addTodo(title: String!): Todo!
+  updateTodo(todoId: String!, completed: Boolean, title: String): Todo!
+  deleteTodo(todoId: String!): Todo!
+}
+
+fragment TodoFragment on Todo {
+  id
+  titile
+  completed
+  createdAt
+  updatedAt
+  user {
+    ...UserFragment
+  }
+}
+
+query Todos {
+  todos {
+    ...TodoFragment
+  }
+}
+
+mutation AddTodo($titile: String!) {
+  addTodo(title: $title) {
+    ...TodoFragment
+  }
+}
+
+mutation UpdateTodo($todoId: String!, $completed: Boolean, $title: String) {
+  updateTodo(todoId: $todoId, completed: $completed, title: $title) {
+    ...TodoFragment
+  }
+}
+
+mutation DeleteTodo($todoId: String!) {
+  deleteTodo(todoId: $todoId) {
+    ...TodoFragment
+  }
+}
