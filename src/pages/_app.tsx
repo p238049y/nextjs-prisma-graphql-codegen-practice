@@ -10,6 +10,7 @@ if (!NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
 }
 
 export const client = new ApolloClient({
+  uri: NEXT_PUBLIC_GRAPHQL_ENDPOINT,
   cache: new InMemoryCache(),
 })
 
